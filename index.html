@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Video-HopChain: 22,550 multi-hop video questions with one verifiable integer answer each, and Confidence-Gated Exploration, which recovers the zero-variance groups of GRPO.">
+  <meta name="keywords" content="Video-HopChain, video reasoning, multi-hop, RLVR, GRPO, Confidence-Gated Exploration, Qwen3-VL">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video-HopChain</title>
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ngquangtrung57.github.io/video-hopchain-page/">
+  <meta property="og:title" content="Video-HopChain: Multi-Hop Questions and Confidence-Gated Exploration for Video Reasoning Models">
+  <meta property="og:description" content="22,550 multi-hop video questions and Confidence-Gated Exploration for GRPO. +7.0 mean points over Qwen3-VL-8B on eight video benchmarks.">
+  <meta property="og:image" content="https://ngquangtrung57.github.io/video-hopchain-page/static/images/main_result.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Video-HopChain: Multi-Hop Questions and Confidence-Gated Exploration for Video Reasoning Models">
+  <meta name="twitter:description" content="22,550 multi-hop video questions and Confidence-Gated Exploration for GRPO. +7.0 mean points over Qwen3-VL-8B on eight video benchmarks.">
+  <meta name="twitter:image" content="https://ngquangtrung57.github.io/video-hopchain-page/static/images/main_result.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span class="nw">Video-HopChain</span></h1>
+          <h2 class="subtitle is-3 publication-subtitle"><span class="nw">Multi-Hop</span> Questions and <span class="nw">Confidence-Gated</span> Exploration for Video Reasoning Models</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Trung Nguyen Quang<sup>1</sup>,</span>
+            <span class="author-block">Yuhao Dong<sup>1</sup>,</span>
+            <span class="author-block">Shuo Sun<sup>2</sup>,</span>
+            <span class="author-block">Shuai Liu<sup>1</sup>,</span>
+            <span class="author-block">Shulin Tian<sup>1</sup>,</span>
+            <span class="author-block">Kim-Hui Yap<sup>3</sup>,</span>
+            <span class="author-block">Ziwei Liu<sup>1,&#9993;</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>S-Lab, Nanyang Technological University,</span>
+            <span class="author-block"><sup>2</sup>Johns Hopkins University,</span>
+            <span class="author-block"><sup>3</sup>Nanyang Technological University</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>&#9993;</sup>Corresponding author</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2609.25773"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2609.25773"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/ngquangtrung57/video-hopchain"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/ngqtrung/video-hopchain"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/ngqtrung/video-hopchain-8b"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-cube"></i></span>
+                  <span>Model</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body has-text-centered">
+      <a href="./static/images/main_result.png" target="_blank" rel="noopener"><img src="./static/images/main_result.png"
+           alt="Bar chart of accuracy on eight video benchmarks for the base model and four training runs. The run with Video-HopChain and CGE is highest on every benchmark."></a>
+      <h2 class="subtitle has-text-centered figure-caption">
+        Accuracy on eight public video benchmarks. A second stage on <b><span class="nw">Video-HopChain</span></b> raises the mean
+        of <span class="nw">Qwen3-VL-8B</span> from 55.4 to 57.9, and <b><span class="nw">Confidence-Gated</span> Exploration (CGE)</b> lifts it to 59.3.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            HopChain has shown on still images that multi-hop data synthesis improves vision-language
+            reasoning, because long chain-of-thought reasoning exposes errors that compound across steps,
+            while most data used for reinforcement learning with verifiable rewards (RLVR) rarely demands a
+            chain of visual evidence, so these weaknesses are likely to stay unexposed. We observe the same
+            problem in video, where this framework has not yet been explored. We therefore build
+            <b><span class="nw">Video-HopChain</span></b>, a dataset of 22,550 multi-hop video questions over 13,378 videos, together
+            with a held-out benchmark of 1,000 questions. Each question chains three to six yes/no questions
+            about moments in one video, and each of them yields one of two integers depending on its answer.
+            The final answer is the sum of these integers, so an exact match on that sum gives the verifiable
+            reward that RLVR needs.
+          </p>
+          <p>
+            We first train <span class="nw">Qwen3-VL-8B</span> with GRPO on a standard video dataset, and a second stage on
+            <span class="nw">Video-HopChain</span> then raises the mean over eight video understanding and reasoning benchmarks from
+            55.4 to 57.9 and improves every one of them. Training on such a dataset, however, also exposes a
+            known limitation of GRPO: its learning signal comes from the reward variance within a group, so
+            hard questions whose rollouts are all incorrect and easy questions whose rollouts are all correct
+            both leave the group with no gradient. To recover these groups at the same compute budget, we
+            introduce <b><span class="nw">Confidence-Gated</span> Exploration (CGE)</b>. With 8 rollouts per question, CGE samples the
+            first 4 rollouts as usual. If these 4 rollouts are either all correct or all incorrect, it then
+            samples the last 4 rollouts with the policy's most confident token masked inside the reasoning
+            span, and it removes the masked positions from the loss while all 8 rollouts enter the advantage.
+            With CGE, the mean rises further to 59.3. We release the dataset, the checkpoint, the data
+            generation code, and the training code.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Dataset. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3"><span class="nw">Video-HopChain</span></h2>
+        <div class="content has-text-justified">
+          <p>
+            Every question chains three to six yes/no <i>hops</i>, and each hop asks about a different moment
+            of the same video. Each hop carries two integers, of which the first counts when the answer to the
+            hop is yes and the second when the answer is no. The model adds the integers of all hops, and that
+            sum is the answer. We resample the integers of a question until every combination of hop answers
+            gives a different sum, so one wrong hop always changes the total, and an exact match on one number
+            gives a verifiable reward.
+          </p>
+        </div>
+        <div class="columns is-mobile is-multiline key-numbers">
+          <div class="column is-half-mobile is-one-quarter-tablet has-text-centered">
+            <p class="heading">Training questions</p>
+            <p class="title">22,550</p>
+          </div>
+          <div class="column is-half-mobile is-one-quarter-tablet has-text-centered">
+            <p class="heading">Videos</p>
+            <p class="title">13,378</p>
+          </div>
+          <div class="column is-half-mobile is-one-quarter-tablet has-text-centered">
+            <p class="heading">Held-out benchmark</p>
+            <p class="title">1,000</p>
+          </div>
+          <div class="column is-half-mobile is-one-quarter-tablet has-text-centered">
+            <p class="heading">Hops per question</p>
+            <p class="title">3&ndash;6</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Dataset. -->
+
+    <!-- Method. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3"><span class="nw">Confidence-Gated</span> Exploration</h2>
+        <div class="content has-text-justified">
+          <p>
+            GRPO learns from the reward variance within a group of rollouts, so a group whose rollouts are all
+            correct or all incorrect gives no gradient. CGE splits the 8 rollouts of a question into two waves
+            of 4. If the first wave is all correct or all incorrect, CGE samples the second wave with the
+            policy's top token masked wherever its probability exceeds &tau; = 0.95 inside the reasoning span.
+            Each masked position leaves the loss, and all 8 rollouts enter the group advantage, so the group
+            can train at the same compute budget.
+          </p>
+        </div>
+        <a href="./static/images/method.png" target="_blank" rel="noopener"><img src="./static/images/method.png"
+             alt="Plain GRPO against Confidence-Gated Exploration. When the first 4 rollouts are all incorrect, plain GRPO gives no gradient, while CGE samples the last 4 rollouts under the top-token mask and 2 of 8 become correct."></a>
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Main results</h2>
+        <div class="content has-text-justified">
+          <p>
+            A second stage on <span class="nw">Video-HopChain</span> raises the mean and improves every one of the eight benchmarks.
+            Enabling CGE on top of that dataset raises the mean again, and the combined run holds the best
+            value of every column. The last column is the accuracy on the 1,000 held-out <span class="nw">Video-HopChain</span>
+            questions.
+          </p>
+        </div>
+        <div class="table-container">
+          <table class="table is-narrow is-hoverable results-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>VMME</th><th>PComp</th><th>VMMMU</th><th>Holmes</th>
+                <th>VCR</th><th>MMR-V</th><th>LVR</th><th>VRB</th>
+                <th class="col-mean">Mean</th><th>In-domain</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="nw">Qwen3-VL-8B-Instruct</span></td>
+                <td>64.0</td><td>28.1</td><td>63.5</td><td>40.7</td><td>32.0</td><td>42.7</td><td>72.6</td><td>74.7</td>
+                <td class="col-mean">52.3</td><td>13.4</td>
+              </tr>
+              <tr>
+                <td>+ standard RL</td>
+                <td>65.8</td><td>34.3</td><td>63.0</td><td>47.4</td><td>35.9</td><td>43.4</td><td>76.1</td><td>77.6</td>
+                <td class="col-mean">55.4</td><td>13.4</td>
+              </tr>
+              <tr>
+                <td>+ standard RL + CGE</td>
+                <td>67.9</td><td>34.4</td><td>62.5</td><td>48.5</td><td>35.1</td><td>46.4</td><td>78.8</td><td>79.5</td>
+                <td class="col-mean">56.6</td><td>16.4</td>
+              </tr>
+              <tr>
+                <td>+ standard RL + <span class="nw">Video-HopChain</span></td>
+                <td>68.6</td><td>36.2</td><td>64.7</td><td><b>48.6</b></td><td>42.1</td><td>45.9</td><td>77.8</td><td>79.4</td>
+                <td class="col-mean">57.9</td><td>21.2</td>
+              </tr>
+              <tr class="ours">
+                <td><b>+ standard RL + <span class="nw">Video-HopChain</span> + CGE</b></td>
+                <td><b>69.2</b></td><td><b>37.4</b></td><td><b>67.5</b></td><td><b>48.6</b></td><td><b>44.9</b></td><td><b>46.6</b></td><td><b>78.9</b></td><td><b>81.0</b></td>
+                <td class="col-mean"><b>59.3</b></td><td><b>23.2</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          Benchmarks: Video-MME, PerceptionComp, Video-MMMU, Video-Holmes, VCRBench (multiple-choice subset),
+          MMR-V, LongVideo-Reason and VRBench. The best value of each column is bold. The last row is the
+          released model.
+        </p>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Comparison with open-source video reasoning models</h2>
+        <div class="content has-text-justified">
+          <p>
+            <span class="nw">V-HopChain</span> gives the best value on most of these benchmarks, ties with Conan on VRBench, and comes
+            a close second on Video-Holmes and on LongVideo-Reason, where OneThinker leads. OneThinker is the one
+            model of this set that starts from the same base model as ours. We compare released systems rather
+            than recipes, because these models differ in base model, training data and compute.
+          </p>
+        </div>
+        <div class="table-container">
+          <table class="table is-narrow is-hoverable results-table">
+            <thead>
+              <tr>
+                <th>Model</th><th>Base</th>
+                <th>VMME</th><th>PComp</th><th>VMMMU</th><th>Holmes</th>
+                <th>VCR</th><th>MMR-V</th><th>LVR</th><th>VRB</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="group-row" colspan="10">base model</td></tr>
+              <tr>
+                <td><span class="nw">Qwen3-VL-8B-Instruct</span><sup>&dagger;</sup></td><td>&ndash;</td>
+                <td>64.0</td><td>28.1</td><td>63.5</td><td>40.7</td><td>32.0</td><td>42.7</td><td>72.6</td><td>74.7</td>
+              </tr>
+              <tr><td class="group-row" colspan="10">open-source video reasoning models</td></tr>
+              <tr>
+                <td>Video-R1</td><td>Qwen2.5-VL-7B</td>
+                <td>61.4</td><td>26.3</td><td>52.4</td><td>36.5</td><td>48.0<sup>*</sup></td><td>36.3<sup>*</sup></td><td>68.1</td><td>69.5<sup>*</sup></td>
+              </tr>
+              <tr>
+                <td>VideoChat-R1</td><td>Qwen2.5-VL-7B</td>
+                <td>60.0</td><td class="second">28.6</td><td>46.4</td><td>33.0</td><td class="second">48.2<sup>*</sup></td><td>36.1<sup>*</sup></td><td>67.2</td><td>61.5<sup>*</sup></td>
+              </tr>
+              <tr>
+                <td>VideoRFT</td><td>Qwen2.5-VL-7B</td>
+                <td>59.8</td><td>&ndash;</td><td>51.1</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td>
+              </tr>
+              <tr>
+                <td>Video-RTS</td><td>Qwen2.5-VL-7B</td>
+                <td>63.0</td><td>&ndash;</td><td>52.7</td><td>40.7</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td>
+              </tr>
+              <tr>
+                <td>Video-KTR</td><td>Qwen2.5-VL-7B</td>
+                <td>62.5</td><td>&ndash;</td><td>53.1</td><td>42.7</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td>
+              </tr>
+              <tr>
+                <td>Video-Thinker</td><td>Qwen2.5-VL-7B</td>
+                <td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>43.2</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td class="second">80.7</td>
+              </tr>
+              <tr>
+                <td>Video-o3</td><td>Qwen2.5-VL-7B</td>
+                <td class="second">66.5</td><td>&ndash;</td><td>51.7</td><td>46.5</td><td>&ndash;</td><td class="second">44.7</td><td>&ndash;</td><td>&ndash;</td>
+              </tr>
+              <tr>
+                <td>Conan</td><td>Qwen2.5-VL-7B</td>
+                <td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>44.6</td><td><b>51.0</b><sup>*</sup></td><td>42.7</td><td>72.8</td><td><b>81.0</b></td>
+              </tr>
+              <tr>
+                <td>LongVILA-R1</td><td>LongVILA-7B</td>
+                <td>65.1</td><td>&ndash;</td><td>51.0</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>72.0</td><td>&ndash;</td>
+              </tr>
+              <tr>
+                <td>OneThinker</td><td><span class="nw">Qwen3-VL-8B</span></td>
+                <td class="second">66.5</td><td>&ndash;</td><td class="second">66.2</td><td><b>48.7</b></td><td>&ndash;</td><td>&ndash;</td><td><b>79.2</b></td><td>&ndash;</td>
+              </tr>
+              <tr class="ours">
+                <td><b><span class="nw">V-HopChain</span> (ours)</b></td><td><span class="nw">Qwen3-VL-8B</span></td>
+                <td><b>69.2</b></td><td><b>37.4</b></td><td><b>67.5</b></td><td class="second">48.6</td><td>44.9</td><td><b>46.6</b></td><td class="second">78.9</td><td><b>81.0</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          A dash marks an unreported number. The best value of each column is bold and the second best is
+          underlined. <sup>*</sup> A value taken from Conan. <sup>&dagger;</sup> A result that we reproduce under
+          our own setting.
+        </p>
+      </div>
+    </div>
+    <!--/ Results. -->
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{nguyenquang2026videohopchain,
+  title         = {Video-HopChain: Multi-Hop Questions and Confidence-Gated Exploration for Video Reasoning Models},
+  author        = {Nguyen Quang, Trung and Dong, Yuhao and Sun, Shuo and Liu, Shuai and Tian, Shulin and Yap, Kim-Hui and Liu, Ziwei},
+  year          = {2026},
+  eprint        = {2609.25773},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2609.25773}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://arxiv.org/pdf/2609.25773">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/ngquangtrung57/video-hopchain">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            The template of this website is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

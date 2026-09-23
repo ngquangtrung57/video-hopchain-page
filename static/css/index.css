@@ -1,0 +1,173 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.footer .icon-link {
+  font-size: 25px;
+  color: #000;
+}
+
+.link-block a {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+.publication-title {
+  font-family: 'Google Sans', sans-serif;
+}
+
+.publication-subtitle {
+  font-family: 'Google Sans', sans-serif;
+  color: #4a4a4a;
+}
+
+.publication-authors {
+  font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors a {
+  color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+  text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+  margin: 0 0.25rem;
+}
+
+.figure-caption {
+  font-size: 0.95rem;
+  color: #4a4a4a;
+  margin-top: 0.75rem;
+}
+
+.key-numbers {
+  margin-top: 1.5rem;
+}
+
+.key-numbers .heading {
+  letter-spacing: 0.05em;
+}
+
+.key-numbers .title {
+  font-family: 'Google Sans', sans-serif;
+  color: #1f4e89;
+}
+
+/* Result tables. */
+.results-table {
+  font-size: 0.9rem;
+  margin: 0 auto;
+}
+
+.results-table th,
+.results-table td {
+  text-align: center !important;
+  vertical-align: middle !important;
+  white-space: nowrap;
+}
+
+.results-table th:first-child,
+.results-table td:first-child {
+  text-align: left !important;
+}
+
+.results-table td.group-row {
+  font-style: italic;
+  color: #7a7a7a;
+  text-align: left !important;
+  background: #fafafa;
+}
+
+.results-table tr.ours td {
+  background: #eaf1fb;
+}
+
+.results-table .col-mean {
+  border-left: 2px solid #dbdbdb;
+}
+
+.results-table .second {
+  text-decoration: underline;
+}
+
+.table-note {
+  font-size: 0.85rem;
+  color: #7a7a7a;
+  margin-top: 0.5rem;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.publication-title,
+.publication-subtitle {
+  text-wrap: balance;
+}
+
+.content pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.key-numbers {
+  margin-bottom: 2.5rem !important;
+}
+
+.key-numbers .title {
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .publication-title {
+    font-size: 2.5rem !important;
+  }
+
+  .publication-subtitle {
+    font-size: 1.3rem !important;
+  }
+
+  .publication-authors.is-size-5 {
+    font-size: 1.05rem !important;
+  }
+
+  .has-text-justified {
+    text-align: left !important;
+  }
+
+  .key-numbers .title {
+    font-size: 1.6rem;
+  }
+
+  .results-table {
+    font-size: 0.8rem;
+  }
+
+  .results-table th:first-child,
+  .results-table td:first-child {
+    white-space: normal;
+    min-width: 8.5rem;
+  }
+
+  .results-table td.group-row {
+    white-space: nowrap;
+  }
+}
+
+.nw {
+  white-space: nowrap;
+}
