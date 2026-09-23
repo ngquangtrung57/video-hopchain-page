@@ -231,47 +231,20 @@
         </div>
         <div class="table-container">
           <table class="table is-narrow is-hoverable results-table">
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th>VMME</th><th>PComp</th><th>VMMMU</th><th>Holmes</th>
-                <th>VCR</th><th>MMR-V</th><th>LVR</th><th>VRB</th>
-                <th class="col-mean">Mean</th><th>In-domain</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><span class="nw">Qwen3-VL-8B-Instruct</span></td>
-                <td>64.0</td><td>28.1</td><td>63.5</td><td>40.7</td><td>32.0</td><td>42.7</td><td>72.6</td><td>74.7</td>
-                <td class="col-mean">52.3</td><td>13.4</td>
-              </tr>
-              <tr>
-                <td>+ standard RL</td>
-                <td>65.8</td><td>34.3</td><td>63.0</td><td>47.4</td><td>35.9</td><td>43.4</td><td>76.1</td><td>77.6</td>
-                <td class="col-mean">55.4</td><td>13.4</td>
-              </tr>
-              <tr>
-                <td>+ standard RL + CGE</td>
-                <td>67.9</td><td>34.4</td><td>62.5</td><td>48.5</td><td>35.1</td><td>46.4</td><td>78.8</td><td>79.5</td>
-                <td class="col-mean">56.6</td><td>16.4</td>
-              </tr>
-              <tr>
-                <td>+ standard RL + <span class="nw">Video-HopChain</span></td>
-                <td>68.6</td><td>36.2</td><td>64.7</td><td><b>48.6</b></td><td>42.1</td><td>45.9</td><td>77.8</td><td>79.4</td>
-                <td class="col-mean">57.9</td><td>21.2</td>
-              </tr>
-              <tr class="ours">
-                <td><b>+ standard RL + <span class="nw">Video-HopChain</span> + CGE</b></td>
-                <td><b>69.2</b></td><td><b>37.4</b></td><td><b>67.5</b></td><td><b>48.6</b></td><td><b>44.9</b></td><td><b>46.6</b></td><td><b>78.9</b></td><td><b>81.0</b></td>
-                <td class="col-mean"><b>59.3</b></td><td><b>23.2</b></td>
-              </tr>
-            </tbody>
-          </table>
+<thead><tr><th>Model</th><th>VMME</th><th>PComp</th><th>VMMMU</th><th>Holmes</th><th>VCR</th><th>MMR-V</th><th>LVR</th><th>VRB</th><th class="col-mean">Mean</th><th>&Delta; vs base</th><th class="wrap">&Delta; vs standard RL</th><th class="col-mean">In-domain</th></tr></thead><tbody>
+<tr><td><span class="nw">Qwen3-VL-8B-Instruct</span></td><td>64.0</td><td>28.1</td><td>63.5</td><td>40.7</td><td>32.0</td><td>42.7</td><td>72.6</td><td>74.7</td><td class="col-mean">52.3</td><td class="dcol">&ndash;</td><td class="dcol">&ndash;</td><td class="col-mean">13.4</td></tr>
+<tr><td>+ standard RL</td><td>65.8<br><span class="delta up">+1.8</span></td><td>34.3<br><span class="delta up">+6.2</span></td><td>63.0<br><span class="delta down">&minus;0.5</span></td><td>47.4<br><span class="delta up">+6.7</span></td><td>35.9<br><span class="delta up">+3.9</span></td><td>43.4<br><span class="delta up">+0.7</span></td><td>76.1<br><span class="delta up">+3.5</span></td><td>77.6<br><span class="delta up">+2.9</span></td><td class="col-mean">55.4</td><td class="dcol"><span class="delta up">+3.1</span></td><td class="dcol">&ndash;</td><td class="col-mean">13.4<br><span class="delta flat">&plusmn;0.0</span></td></tr>
+<tr><td>+ standard RL + CGE</td><td>67.9<br><span class="delta up">+3.9</span></td><td>34.4<br><span class="delta up">+6.3</span></td><td>62.5<br><span class="delta down">&minus;1.0</span></td><td>48.5<br><span class="delta up">+7.8</span></td><td>35.1<br><span class="delta up">+3.1</span></td><td>46.4<br><span class="delta up">+3.7</span></td><td>78.8<br><span class="delta up">+6.2</span></td><td>79.5<br><span class="delta up">+4.8</span></td><td class="col-mean">56.6</td><td class="dcol"><span class="delta up">+4.3</span></td><td class="dcol"><span class="delta up">+1.2</span></td><td class="col-mean">16.4<br><span class="delta up">+3.0</span></td></tr>
+<tr><td>+ standard RL + Video-HopChain</td><td>68.6<br><span class="delta up">+4.6</span></td><td>36.2<br><span class="delta up">+8.1</span></td><td>64.7<br><span class="delta up">+1.2</span></td><td class="best"><b>48.6</b><br><span class="delta up">+7.9</span></td><td>42.1<br><span class="delta up">+10.1</span></td><td>45.9<br><span class="delta up">+3.2</span></td><td>77.8<br><span class="delta up">+5.2</span></td><td>79.4<br><span class="delta up">+4.7</span></td><td class="col-mean">57.9</td><td class="dcol"><span class="delta up">+5.6</span></td><td class="dcol"><span class="delta up">+2.5</span></td><td class="col-mean">21.2<br><span class="delta up">+7.8</span></td></tr>
+<tr class="ours"><td><b>+ standard RL + Video-HopChain + CGE</b></td><td class="best"><b>69.2</b><br><span class="delta up">+5.2</span></td><td class="best"><b>37.4</b><br><span class="delta up">+9.3</span></td><td class="best"><b>67.5</b><br><span class="delta up">+4.0</span></td><td class="best"><b>48.6</b><br><span class="delta up">+7.9</span></td><td class="best"><b>44.9</b><br><span class="delta up">+12.9</span></td><td class="best"><b>46.6</b><br><span class="delta up">+3.9</span></td><td class="best"><b>78.9</b><br><span class="delta up">+6.3</span></td><td class="best"><b>81.0</b><br><span class="delta up">+6.3</span></td><td class="col-mean best"><b>59.3</b></td><td class="dcol"><span class="delta up">+7.0</span></td><td class="dcol"><span class="delta up">+3.9</span></td><td class="col-mean best"><b>23.2</b><br><span class="delta up">+9.8</span></td></tr>
+</tbody></table>
         </div>
         <p class="table-note">
           Benchmarks: Video-MME, PerceptionComp, Video-MMMU, Video-Holmes, VCRBench (multiple-choice subset),
-          MMR-V, LongVideo-Reason and VRBench. The best value of each column is bold. The last row is the
-          released model.
+          MMR-V, LongVideo-Reason and VRBench. The small number under each score is the change against the base
+          model, <span class="delta up">green</span> for a gain and <span class="delta down">red</span> for a drop.
+          &Delta; vs standard RL compares the mean against the run after the first stage. The best value of each
+          column is bold on a green cell, and the last row is the released model.
         </p>
       </div>
     </div>
@@ -289,71 +262,29 @@
         </div>
         <div class="table-container">
           <table class="table is-narrow is-hoverable results-table">
-            <thead>
-              <tr>
-                <th>Model</th><th>Base</th>
-                <th>VMME</th><th>PComp</th><th>VMMMU</th><th>Holmes</th>
-                <th>VCR</th><th>MMR-V</th><th>LVR</th><th>VRB</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td class="group-row" colspan="10">base model</td></tr>
-              <tr>
-                <td><span class="nw">Qwen3-VL-8B-Instruct</span><sup>&dagger;</sup></td><td>&ndash;</td>
-                <td>64.0</td><td>28.1</td><td>63.5</td><td>40.7</td><td>32.0</td><td>42.7</td><td>72.6</td><td>74.7</td>
-              </tr>
-              <tr><td class="group-row" colspan="10">open-source video reasoning models</td></tr>
-              <tr>
-                <td>Video-R1</td><td>Qwen2.5-VL-7B</td>
-                <td>61.4</td><td>26.3</td><td>52.4</td><td>36.5</td><td>48.0<sup>*</sup></td><td>36.3<sup>*</sup></td><td>68.1</td><td>69.5<sup>*</sup></td>
-              </tr>
-              <tr>
-                <td>VideoChat-R1</td><td>Qwen2.5-VL-7B</td>
-                <td>60.0</td><td class="second">28.6</td><td>46.4</td><td>33.0</td><td class="second">48.2<sup>*</sup></td><td>36.1<sup>*</sup></td><td>67.2</td><td>61.5<sup>*</sup></td>
-              </tr>
-              <tr>
-                <td>VideoRFT</td><td>Qwen2.5-VL-7B</td>
-                <td>59.8</td><td>&ndash;</td><td>51.1</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td>
-              </tr>
-              <tr>
-                <td>Video-RTS</td><td>Qwen2.5-VL-7B</td>
-                <td>63.0</td><td>&ndash;</td><td>52.7</td><td>40.7</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td>
-              </tr>
-              <tr>
-                <td>Video-KTR</td><td>Qwen2.5-VL-7B</td>
-                <td>62.5</td><td>&ndash;</td><td>53.1</td><td>42.7</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td>
-              </tr>
-              <tr>
-                <td>Video-Thinker</td><td>Qwen2.5-VL-7B</td>
-                <td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>43.2</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td class="second">80.7</td>
-              </tr>
-              <tr>
-                <td>Video-o3</td><td>Qwen2.5-VL-7B</td>
-                <td class="second">66.5</td><td>&ndash;</td><td>51.7</td><td>46.5</td><td>&ndash;</td><td class="second">44.7</td><td>&ndash;</td><td>&ndash;</td>
-              </tr>
-              <tr>
-                <td>Conan</td><td>Qwen2.5-VL-7B</td>
-                <td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>44.6</td><td><b>51.0</b><sup>*</sup></td><td>42.7</td><td>72.8</td><td><b>81.0</b></td>
-              </tr>
-              <tr>
-                <td>LongVILA-R1</td><td>LongVILA-7B</td>
-                <td>65.1</td><td>&ndash;</td><td>51.0</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>72.0</td><td>&ndash;</td>
-              </tr>
-              <tr>
-                <td>OneThinker</td><td><span class="nw">Qwen3-VL-8B</span></td>
-                <td class="second">66.5</td><td>&ndash;</td><td class="second">66.2</td><td><b>48.7</b></td><td>&ndash;</td><td>&ndash;</td><td><b>79.2</b></td><td>&ndash;</td>
-              </tr>
-              <tr class="ours">
-                <td><b><span class="nw">V-HopChain</span> (ours)</b></td><td><span class="nw">Qwen3-VL-8B</span></td>
-                <td><b>69.2</b></td><td><b>37.4</b></td><td><b>67.5</b></td><td class="second">48.6</td><td>44.9</td><td><b>46.6</b></td><td class="second">78.9</td><td><b>81.0</b></td>
-              </tr>
-            </tbody>
-          </table>
+<thead><tr><th>Model</th><th>Base</th><th>VMME</th><th>PComp</th><th>VMMMU</th><th>Holmes</th><th>VCR</th><th>MMR-V</th><th>LVR</th><th>VRB</th><th class="col-mean">Reported</th><th class="wrap">V-HopChain ahead</th><th class="wrap">Mean &Delta; (shared)</th></tr></thead><tbody>
+<tr><td class="group-row" colspan="13">base model</td></tr>
+<tr><td><span class="nw">Qwen3-VL-8B-Instruct</span><sup>&dagger;</sup></td><td>&ndash;</td><td>64.0</td><td>28.1</td><td>63.5</td><td>40.7</td><td>32.0</td><td>42.7</td><td>72.6</td><td>74.7</td><td class="col-mean">8 / 8</td><td class="dcol">8 / 8</td><td class="dcol"><span class="delta up">+7.0</span></td></tr>
+<tr><td class="group-row" colspan="13">open-source video reasoning models</td></tr>
+<tr><td>Video-R1</td><td>Qwen2.5-VL-7B</td><td>61.4</td><td>26.3</td><td>52.4</td><td>36.5</td><td>48.0<sup>*</sup></td><td>36.3<sup>*</sup></td><td>68.1</td><td>69.5<sup>*</sup></td><td class="col-mean">8 / 8</td><td class="dcol">7 / 8</td><td class="dcol"><span class="delta up">+9.5</span></td></tr>
+<tr><td>VideoChat-R1</td><td>Qwen2.5-VL-7B</td><td>60.0</td><td class="second">28.6</td><td>46.4</td><td>33.0</td><td class="second">48.2<sup>*</sup></td><td>36.1<sup>*</sup></td><td>67.2</td><td>61.5<sup>*</sup></td><td class="col-mean">8 / 8</td><td class="dcol">7 / 8</td><td class="dcol"><span class="delta up">+11.6</span></td></tr>
+<tr><td>VideoRFT</td><td>Qwen2.5-VL-7B</td><td>59.8</td><td>&ndash;</td><td>51.1</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td class="col-mean">2 / 8</td><td class="dcol">2 / 2</td><td class="dcol"><span class="delta up">+12.9</span></td></tr>
+<tr><td>Video-RTS</td><td>Qwen2.5-VL-7B</td><td>63.0</td><td>&ndash;</td><td>52.7</td><td>40.7</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td class="col-mean">3 / 8</td><td class="dcol">3 / 3</td><td class="dcol"><span class="delta up">+9.6</span></td></tr>
+<tr><td>Video-KTR</td><td>Qwen2.5-VL-7B</td><td>62.5</td><td>&ndash;</td><td>53.1</td><td>42.7</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td class="col-mean">3 / 8</td><td class="dcol">3 / 3</td><td class="dcol"><span class="delta up">+9.0</span></td></tr>
+<tr><td>Video-Thinker</td><td>Qwen2.5-VL-7B</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>43.2</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td class="second">80.7</td><td class="col-mean">2 / 8</td><td class="dcol">2 / 2</td><td class="dcol"><span class="delta up">+2.8</span></td></tr>
+<tr><td>Video-o3</td><td>Qwen2.5-VL-7B</td><td class="second">66.5</td><td>&ndash;</td><td>51.7</td><td>46.5</td><td>&ndash;</td><td class="second">44.7</td><td>&ndash;</td><td>&ndash;</td><td class="col-mean">4 / 8</td><td class="dcol">4 / 4</td><td class="dcol"><span class="delta up">+5.6</span></td></tr>
+<tr><td>Conan</td><td>Qwen2.5-VL-7B</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>44.6</td><td class="best"><b>51.0</b><sup>*</sup></td><td>42.7</td><td>72.8</td><td class="best"><b>81.0</b></td><td class="col-mean">5 / 8</td><td class="dcol">3 / 5 <span class="tie">(1 tie)</span></td><td class="dcol"><span class="delta up">+1.6</span></td></tr>
+<tr><td>LongVILA-R1</td><td>LongVILA-7B</td><td>65.1</td><td>&ndash;</td><td>51.0</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>72.0</td><td>&ndash;</td><td class="col-mean">3 / 8</td><td class="dcol">3 / 3</td><td class="dcol"><span class="delta up">+9.2</span></td></tr>
+<tr><td>OneThinker</td><td>Qwen3-VL-8B</td><td class="second">66.5</td><td>&ndash;</td><td class="second">66.2</td><td class="best"><b>48.7</b></td><td>&ndash;</td><td>&ndash;</td><td class="best"><b>79.2</b></td><td>&ndash;</td><td class="col-mean">4 / 8</td><td class="dcol">2 / 4</td><td class="dcol"><span class="delta up">+0.9</span></td></tr>
+<tr class="ours"><td><b>V-HopChain (ours)</b></td><td>Qwen3-VL-8B</td><td class="best"><b>69.2</b></td><td class="best"><b>37.4</b></td><td class="best"><b>67.5</b></td><td class="second">48.6</td><td>44.9</td><td class="best"><b>46.6</b></td><td class="second">78.9</td><td class="best"><b>81.0</b></td><td class="col-mean">8 / 8</td><td class="dcol">&ndash;</td><td class="dcol">&ndash;</td></tr>
+</tbody></table>
         </div>
         <p class="table-note">
-          A dash marks an unreported number. The best value of each column is bold and the second best is
-          underlined. <sup>*</sup> A value taken from Conan. <sup>&dagger;</sup> A result that we reproduce under
-          our own setting.
+          A dash marks an unreported number. The best value of each column is bold on a green cell and the second
+          best is underlined. <sup>*</sup> A value taken from Conan. <sup>&dagger;</sup> A result that we reproduce
+          under our own setting. Reported counts the benchmarks a model reports. V-HopChain ahead counts the
+          reported benchmarks on which V-HopChain scores higher, and Mean &Delta; (shared) is the mean gap of
+          V-HopChain over those same benchmarks.
         </p>
       </div>
     </div>

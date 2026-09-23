@@ -171,3 +171,134 @@ pre {
 .nw {
   white-space: nowrap;
 }
+
+/* Accent colors, taken from the blue of the result figure. */
+:root {
+  --accent: #1f4e89;
+  --accent-soft: #eaf1fb;
+  --accent-mid: #cfe0f5;
+  --up: #1e7b3a;
+  --up-bg: #e3f4e8;
+  --down: #b3261e;
+  --flat: #7a7a7a;
+}
+
+.publication-title {
+  color: var(--accent);
+}
+
+.section .title.is-3,
+#BibTeX .title {
+  color: var(--accent);
+  border-left: 5px solid #4a86c8;
+  padding-left: 0.6rem;
+}
+
+.columns.has-text-centered .title.is-3 {
+  border-left: none;
+  padding-left: 0;
+}
+
+.figure-caption b {
+  color: var(--accent);
+}
+
+.key-numbers .column {
+  border-top: 3px solid var(--accent-mid);
+}
+
+.results-table thead th {
+  background: var(--accent);
+  color: #fff !important;
+  border-color: var(--accent) !important;
+}
+
+.results-table td.best {
+  background: var(--up-bg);
+}
+
+.results-table tr.ours td {
+  background: var(--accent-mid);
+}
+
+.results-table tr.ours td.best {
+  background: #c4e6cf;
+}
+
+.results-table td.group-row {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.results-table .dcol {
+  background: #fbfcfe;
+}
+
+.results-table tr.ours .dcol {
+  background: var(--accent-mid);
+}
+
+.delta {
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.dcol .delta {
+  font-size: 0.85rem;
+}
+
+.delta.up {
+  color: var(--up);
+}
+
+.delta.down {
+  color: var(--down);
+}
+
+.delta.flat {
+  color: var(--flat);
+}
+
+.tie {
+  font-size: 0.75rem;
+  color: var(--flat);
+}
+
+.content pre {
+  border-left: 4px solid #4a86c8;
+  background: var(--accent-soft);
+}
+
+.footer {
+  border-top: 3px solid var(--accent-mid);
+}
+
+/* Keep the wide tables inside the page column: they scroll on their own when they cannot fit. */
+.columns > .column {
+  min-width: 0;
+}
+
+.table.results-table.is-narrow td,
+.table.results-table.is-narrow th {
+  padding: 0.3em 0.4em;
+}
+
+.results-table {
+  font-size: 0.82rem;
+}
+
+.results-table thead th {
+  white-space: normal;
+  line-height: 1.2;
+  vertical-align: middle !important;
+}
+
+.results-table thead th {
+  white-space: nowrap;
+}
+
+.results-table thead th.wrap {
+  white-space: normal;
+  min-width: 5.5rem;
+}
