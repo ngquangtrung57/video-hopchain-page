@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Video-HopChain</title>
+  <title>Video-HopChain: Multi-Hop Questions and Confidence-Gated Exploration for Video Reasoning Models</title>
   <meta name="description"
         content="Video-HopChain: 22,550 multi-hop video questions with one verifiable integer answer each, and Confidence-Gated Exploration, which recovers the zero-variance groups of GRPO.">
   <meta name="keywords" content="Video-HopChain, video reasoning, multi-hop, RLVR, GRPO, Confidence-Gated Exploration, Qwen3-VL">
@@ -39,6 +39,7 @@
     <nav class="toc" aria-label="Sections">
       <a href="#overview">Overview</a>
       <a href="#video">Video</a>
+      <a href="#abstract">Abstract</a>
       <a href="#dataset">Dataset</a>
       <a href="#method">Method</a>
       <a href="#results">Results</a>
@@ -216,7 +217,7 @@
              alt="The data pipeline: a source video of three minutes or longer is cut into shots with PySceneDetect, every shot is captioned by MiniMax-M3, Qwen3.8-27B writes two candidate questions from the captions, the same model judges every hop, a faulted question is written again up to three times, and 22,550 questions over 13,378 videos remain, plus 1,000 held-out questions."></a>
       </figure>
       <ol class="steps">
-        <li><strong>Captions.</strong> Keep videos of at least three minutes, cut them into shots with PySceneDetect, and caption every shot once with MiniMax-M3.</li>
+        <li><strong>Captions.</strong> Keep videos of at least three minutes, cut them into shots with PySceneDetect, and caption every shot once with MiniMax-M3. Vript videos keep their released captions.</li>
         <li><strong>Generate.</strong> Sample a specification (hop count, hop types, links, the two numbers of each hop), then Qwen3.8-27B writes two candidate questions per video from the captions.</li>
         <li><strong>Verify.</strong> The same model judges every hop against the captions. A faulted question goes back to the generator, and it is dropped after three failed attempts.</li>
         <li><strong>Assemble.</strong> Keep at most two questions per video, and split by video into 22,550 training and 1,000 held-out questions.</li>
@@ -300,7 +301,7 @@
     </p>
 
     <figure class="fig scroll">
-      <a href="./static/images/social.jpg"><img src="./static/images/main_result.png" width="2000" height="798" loading="lazy"
+      <a href="./static/images/main_result.png"><img src="./static/images/main_result.png" width="2000" height="798" loading="lazy"
            alt="Grouped bar chart of the same table: on each of the eight benchmarks the run with Video-HopChain and CGE is the highest bar or tied for highest."></a>
       <figcaption>The same eight benchmarks as bars, one group per benchmark.</figcaption>
     </figure>
