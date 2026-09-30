@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "docs": [],
+  "min_signals": 6,
+  "cooldown_min": 45,
+  "bootstrap": true,
+  "bootstrap_declined": true
+}

@@ -213,14 +213,14 @@
     <h3 class="sub" id="pipeline">From raw video to verified questions</h3>
     <div class="pipe">
       <figure class="fig scroll wide">
-        <a href="./static/images/pipeline.png"><img src="./static/images/pipeline.png" width="2000" height="849" loading="lazy"
-             alt="The data pipeline: a source video of three minutes or longer is cut into shots with PySceneDetect, every shot is captioned by MiniMax-M3, Qwen3.8-27B writes two candidate questions from the captions, the same model judges every hop, a faulted question is written again up to three times, and 22,550 questions over 13,378 videos remain, plus 1,000 held-out questions."></a>
+        <a href="./static/images/pipeline.png"><img src="./static/images/pipeline.png" width="2000" height="845" loading="lazy"
+             alt="The data pipeline: a source video of three minutes or longer is cut into shots with PySceneDetect, every shot is captioned by MiniMax-M3, Qwen3.8-27B writes two candidate questions from the captions, the same model judges every hop, a faulted question is written again up to three times, a difficulty filter with Qwen3-VL-8B drops questions solved in 6 of 8 rollouts, and 22,550 questions over 13,378 videos remain, plus 1,000 held-out questions."></a>
       </figure>
       <ol class="steps">
         <li><strong>Captions.</strong> Keep videos of at least three minutes, cut them into shots with PySceneDetect, and caption every shot once with MiniMax-M3. Vript videos keep their released captions.</li>
         <li><strong>Generate.</strong> Sample a specification (hop count, hop types, links, the two numbers of each hop), then Qwen3.8-27B writes two candidate questions per video from the captions.</li>
         <li><strong>Verify.</strong> The same model judges every hop against the captions. A faulted question goes back to the generator, and it is dropped after three failed attempts.</li>
-        <li><strong>Assemble.</strong> Keep at most two questions per video, and split by video into 22,550 training and 1,000 held-out questions.</li>
+        <li><strong>Filter.</strong> A difficulty filter drops every question the base model already solves in 6 of 8 rollouts. At most two questions per video remain, split by video into 22,550 training and 1,000 held-out questions.</li>
       </ol>
     </div>
   </div>
