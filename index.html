@@ -308,7 +308,7 @@
 
     <h3 class="sub" id="comparison">Comparison with open-source video reasoning models</h3>
     <p class="prose-p">
-      Video-HopChain gives the best value on most of these benchmarks, ties with Conan on VRBench, and comes a
+      Video-HopChain-8B gives the best value on most of these benchmarks, ties with Conan on VRBench, and comes a
       close second on Video-Holmes and on LongVideo-Reason, where OneThinker leads and is the one model of
       this set that starts from the same base model as ours. We compare released systems rather than
       recipes, because the ten models differ in base model, training data and compute.
@@ -360,8 +360,8 @@
         </div>
         <p class="note small">
           Ablations run on the OpenMMReasoner image dataset, because one RL step on video costs 2,275 seconds
-          on four nodes. <sup>&dagger;</sup> A run that never learns the answer format. Above 0.90 the
-          threshold needs no tuning. Intervening on all-incorrect groups alone is no better than plain GRPO,
+          on four nodes. <sup>&dagger;</sup> A run that never learns the answer format. Between 0.90 and
+          0.95 the threshold needs no tuning. Intervening on all-incorrect groups alone is no better than plain GRPO,
           because most zero-variance groups are all correct.
         </p>
       </div>
@@ -378,7 +378,7 @@
     </header>
     <figure class="fig scroll wide">
       <a href="./static/images/training_signal.png"><img src="./static/images/training_signal.png" width="2000" height="536" loading="lazy"
-           alt="Four training curves: (a) the share of intervened groups whose variance returns on Video-HopChain grows from about 0.13 to 0.2; (b) the same share on general data stays lower; (c) the policy entropy of CGE stays above plain GRPO; (d) the mean response length of plain GRPO and of the first and last 4 rollouts of CGE."></a>
+           alt="Four training curves: (a) the share of intervened groups whose variance returns on Video-HopChain grows from about one in seven to one in five; (b) the same share on general data stays lower; (c) the policy entropy of CGE stays above plain GRPO; (d) the mean response length of plain GRPO and of the first and last 4 rollouts of CGE."></a>
       <figcaption>Four training metrics of our runs, over the training steps.</figcaption>
     </figure>
     <div class="cards three">
