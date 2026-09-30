@@ -140,11 +140,8 @@
 <!-- ============ ABSTRACT ============ -->
 <section class="section alt" id="abstract">
   <div class="wrap narrow">
-    <header class="sec-head">
+    <div class="prose abstract-box">
       <p class="kicker">Abstract</p>
-      <h2>Why multi-hop questions, and why a second wave</h2>
-    </header>
-    <div class="prose">
       <p>
         HopChain has shown on still images that multi-hop data synthesis improves vision-language
         reasoning, because long chain-of-thought reasoning exposes errors that compound across steps,
@@ -212,19 +209,6 @@
       
     </div>
 
-    <h3 class="sub">Four kinds of hop</h3>
-    <div class="cards four">
-      <article class="card"><h3>Order</h3><p>The temporal order of two events, so the hop spans two moments.</p></article>
-      <article class="card"><h3>Spatial</h3><p>How two things are arranged inside one frame, in terms anchored to the frame.</p></article>
-      <article class="card"><h3>Action</h3><p>Which physical action an agent performs, such as pour or lift.</p></article>
-      <article class="card"><h3>Attribute</h3><p>A visible property of a named object, namely its colour.</p></article>
-    </div>
-    <p class="note">
-      In a <strong>flat</strong> question (probability 0.30) every hop names its own moment. In a
-      <strong>selector</strong> question (probability 0.70) an earlier answer decides which moment a later hop
-      asks about, so the model has to work through the hops in order.
-    </p>
-
     <h3 class="sub" id="pipeline">From raw video to verified questions</h3>
     <div class="pipe">
       <figure class="fig scroll wide">
@@ -256,17 +240,17 @@
 
     <figure class="fig scroll wide">
       <a href="./static/images/method.png"><img src="./static/images/method.png" width="2000" height="1394" loading="lazy"
-           alt="Plain GRPO against Confidence-Gated Exploration. When the first 4 rollouts are all incorrect, plain GRPO samples the rest as usual and gets 0 of 8 correct, so the group contributes no gradient. CGE samples the second wave under the top-token mask and 2 of 8 become correct, so the group trains at the same budget. Below, the mask removes a token of probability 0.97, above the threshold 0.95, inside the reasoning span only."></a>
+           alt="Plain GRPO against Confidence-Gated Exploration. When the first 4 rollouts are all incorrect, plain GRPO samples the rest as usual and gets 0 of 8 correct, so the group contributes no gradient. CGE samples the last 4 under the top-token mask and 2 of 8 become correct, so the group trains at the same budget. Below, the mask removes a token of probability 0.97, above the threshold 0.95, inside the reasoning span only."></a>
       <figcaption>Confidence-Gated Exploration on one group of <var>G</var> = 8 rollouts.</figcaption>
     </figure>
 
     <div class="cards three">
       <article class="card step"><span class="n">1</span><h3>Gate</h3>
-        <p>Draw the first wave of 4 rollouts and score its accuracy. If the 4 disagree, the group already carries variance, and the second wave samples as usual.</p></article>
+        <p>Sample the first 4 rollouts and score them. If they disagree, the group already carries variance, and the last 4 are sampled as usual.</p></article>
       <article class="card step"><span class="n">2</span><h3>Top-token mask</h3>
-        <p>If the first wave is all correct or all incorrect, the second wave drops the top token wherever its probability exceeds &tau; = 0.95 inside the reasoning span, and renormalizes over the rest.</p></article>
+        <p>If the first 4 are all correct or all incorrect, the last 4 drop the top token wherever its probability exceeds &tau; = 0.95 inside the reasoning span, and renormalize over the rest.</p></article>
       <article class="card step"><span class="n">3</span><h3>Loss mask</h3>
-        <p>The masked positions leave the loss. All 8 rollouts of both waves enter the group advantage, so the group can train at the same compute budget.</p></article>
+        <p>The masked positions leave the loss. All 8 rollouts enter the group advantage, so the group can train at the same compute budget.</p></article>
     </div>
   </div>
 </section>
@@ -393,7 +377,7 @@
     </header>
     <figure class="fig scroll wide">
       <a href="./static/images/training_signal.png"><img src="./static/images/training_signal.png" width="2000" height="536" loading="lazy"
-           alt="Four training curves: (a) the share of intervened groups whose variance returns on Video-HopChain grows from about 0.13 to 0.2; (b) the same share on general data stays lower; (c) the policy entropy of CGE stays above plain GRPO; (d) the mean response length of both runs and both CGE waves."></a>
+           alt="Four training curves: (a) the share of intervened groups whose variance returns on Video-HopChain grows from about 0.13 to 0.2; (b) the same share on general data stays lower; (c) the policy entropy of CGE stays above plain GRPO; (d) the mean response length of plain GRPO and of the first and last 4 rollouts of CGE."></a>
       <figcaption>Four training metrics of our runs, over the training steps.</figcaption>
     </figure>
     <div class="cards three">

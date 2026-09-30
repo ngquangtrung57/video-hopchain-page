@@ -316,3 +316,8 @@ h3.sub { margin: 64px 0 20px; font: 400 clamp(24px, 3vw, 30px)/1.2 var(--serif);
 /* link from a table row to its released checkpoint */
 .ckpt { margin-left: 6px; font-family: var(--mono, ui-monospace, monospace); font-size: 0.72em; font-weight: 500; color: var(--accent, #2f6fb5); text-decoration: none; border: 1px solid currentColor; border-radius: 5px; padding: 0 5px; vertical-align: 1px; opacity: 0.85; }
 .ckpt:hover { opacity: 1; }
+
+/* the abstract sits in one quiet box, with no section title */
+.abstract-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 32px 12px; margin: 0 auto; }
+.abstract-box .kicker { margin-bottom: 14px; }
+@media (max-width: 720px) { .abstract-box { padding: 20px 18px 6px; } }
