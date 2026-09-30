@@ -213,7 +213,7 @@
     <h3 class="sub" id="pipeline">From raw video to verified questions</h3>
     <div class="pipe">
       <figure class="fig scroll wide">
-        <a href="./static/images/pipeline.png"><img src="./static/images/pipeline.png" width="2000" height="845" loading="lazy"
+        <a href="./static/images/pipeline.png"><img src="./static/images/pipeline.png" width="2000" height="820" loading="lazy"
              alt="The data pipeline: a source video of three minutes or longer is cut into shots with PySceneDetect, every shot is captioned by MiniMax-M3, Qwen3.8-27B writes two candidate questions from the captions, the same model judges every hop, a faulted question is written again up to three times, a difficulty filter with Qwen3-VL-8B drops questions solved in 6 of 8 rollouts, and 22,550 questions over 13,378 videos remain, plus 1,000 held-out questions."></a>
       </figure>
       <ol class="steps">
