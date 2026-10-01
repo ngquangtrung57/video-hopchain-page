@@ -89,7 +89,7 @@
       <a class="btn" href="https://huggingface.co/datasets/ngqtrung/video-hopchain">
         <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v13c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-13M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></svg>
         <span>Dataset</span></a>
-      <a class="btn" href="https://huggingface.co/ngqtrung/video-hopchain-8b">
+      <a class="btn" href="https://huggingface.co/ngqtrung/Video-HopChain-8B">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7z"/><path d="M3.5 7 12 11.5 20.5 7M12 11.5v10"/></svg>
         <span>Model</span></a>
       <a class="btn ghost" href="https://huggingface.co/collections/ngqtrung/video-hopchain">
@@ -285,10 +285,10 @@
         <thead><tr><th scope="col" class="l">model</th><th scope="col" title="Video-MME">VMME</th><th scope="col" title="PerceptionComp">PComp</th><th scope="col" title="Video-MMMU">VMMMU</th><th scope="col" title="Video-Holmes">Holmes</th><th scope="col" title="VCRBench">VCR</th><th scope="col" title="MMR-V">MMR-V</th><th scope="col" title="LongVideo-Reason">LVR</th><th scope="col" title="VRBench">VRB</th><th scope="col" class="sep">mean</th><th scope="col">in-domain</th></tr></thead>
         <tbody>
           <tr><th scope="row" class="l">Qwen3-VL-8B-Instruct</th><td>64.0</td><td>28.1</td><td>63.5</td><td>40.7</td><td>32.0</td><td>42.7</td><td>72.6</td><td>74.7</td><td class="sep">52.3</td><td>13.4</td></tr>
-          <tr><th scope="row" class="l">+ standard RL <a class="ckpt" href="https://huggingface.co/ngqtrung/video-hopchain-8b-standard-rl" title="Standard-RL checkpoint on Hugging Face">ckpt</a></th><td>65.8</td><td>34.3</td><td>63.0</td><td>47.4</td><td>35.9</td><td>43.4</td><td>76.1</td><td>77.6</td><td class="sep">55.4</td><td>13.4</td></tr>
+          <tr><th scope="row" class="l">+ standard RL <a class="ckpt" href="https://huggingface.co/ngqtrung/Video-HopChain-8B-Standard-RL" title="Standard-RL checkpoint on Hugging Face">ckpt</a></th><td>65.8</td><td>34.3</td><td>63.0</td><td>47.4</td><td>35.9</td><td>43.4</td><td>76.1</td><td>77.6</td><td class="sep">55.4</td><td>13.4</td></tr>
           <tr><th scope="row" class="l">+ standard RL + CGE</th><td>67.9</td><td>34.4</td><td>62.5</td><td>48.5</td><td>35.1</td><td>46.4</td><td>78.8</td><td>79.5</td><td class="sep">56.6</td><td>16.4</td></tr>
           <tr><th scope="row" class="l">+ standard RL + Video-HopChain</th><td>68.6</td><td>36.2</td><td>64.7</td><td><b>48.6</b></td><td>42.1</td><td>45.9</td><td>77.8</td><td>79.4</td><td class="sep">57.9</td><td>21.2</td></tr>
-          <tr class="ours"><th scope="row" class="l">+ standard RL + Video-HopChain + CGE <a class="ckpt" href="https://huggingface.co/ngqtrung/video-hopchain-8b" title="Video-HopChain-8B on Hugging Face">ckpt</a></th><td><b>69.2</b></td><td><b>37.4</b></td><td><b>67.5</b></td><td><b>48.6</b></td><td><b>44.9</b></td><td><b>46.6</b></td><td><b>78.9</b></td><td><b>81.0</b></td><td class="sep"><b>59.3</b></td><td><b>23.2</b></td></tr>
+          <tr class="ours"><th scope="row" class="l">+ standard RL + Video-HopChain + CGE <a class="ckpt" href="https://huggingface.co/ngqtrung/Video-HopChain-8B" title="Video-HopChain-8B on Hugging Face">ckpt</a></th><td><b>69.2</b></td><td><b>37.4</b></td><td><b>67.5</b></td><td><b>48.6</b></td><td><b>44.9</b></td><td><b>46.6</b></td><td><b>78.9</b></td><td><b>81.0</b></td><td class="sep"><b>59.3</b></td><td><b>23.2</b></td></tr>
         </tbody>
       </table>
     </div>
@@ -331,7 +331,7 @@
           <tr><th scope="row" class="l">Conan</th><td class="l">Qwen2.5-VL-7B</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>44.6</td><td><b>51.0</b><sup>&#9733;</sup></td><td>42.7</td><td>72.8</td><td><b>81.0</b></td></tr>
           <tr><th scope="row" class="l">LongVILA-R1</th><td class="l">LongVILA-7B</td><td>65.1</td><td>&ndash;</td><td>51.0</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>72.0</td><td>&ndash;</td></tr>
           <tr><th scope="row" class="l">OneThinker</th><td class="l">Qwen3-VL-8B</td><td><u>66.5</u></td><td>&ndash;</td><td><u>66.2</u></td><td><b>48.7</b></td><td>&ndash;</td><td>&ndash;</td><td><b>79.2</b></td><td>&ndash;</td></tr>
-          <tr class="ours"><th scope="row" class="l">Video-HopChain-8B (ours) <a class="ckpt" href="https://huggingface.co/ngqtrung/video-hopchain-8b" title="Video-HopChain-8B on Hugging Face">ckpt</a></th><td class="l">Qwen3-VL-8B</td><td><b>69.2</b></td><td><b>37.4</b></td><td><b>67.5</b></td><td><u>48.6</u></td><td>44.9</td><td><b>46.6</b></td><td><u>78.9</u></td><td><b>81.0</b></td></tr>
+          <tr class="ours"><th scope="row" class="l">Video-HopChain-8B (ours) <a class="ckpt" href="https://huggingface.co/ngqtrung/Video-HopChain-8B" title="Video-HopChain-8B on Hugging Face">ckpt</a></th><td class="l">Qwen3-VL-8B</td><td><b>69.2</b></td><td><b>37.4</b></td><td><b>67.5</b></td><td><u>48.6</u></td><td>44.9</td><td><b>46.6</b></td><td><u>78.9</u></td><td><b>81.0</b></td></tr>
         </tbody>
       </table>
     </div>
@@ -427,8 +427,8 @@
       <a href="https://arxiv.org/abs/2609.25773">arXiv</a>
       <a href="https://github.com/ngquangtrung57/video-hopchain">Code</a>
       <a href="https://huggingface.co/datasets/ngqtrung/video-hopchain">Dataset</a>
-      <a href="https://huggingface.co/ngqtrung/video-hopchain-8b">Model</a>
-      <a href="https://huggingface.co/ngqtrung/video-hopchain-8b-standard-rl">Standard-RL checkpoint</a>
+      <a href="https://huggingface.co/ngqtrung/Video-HopChain-8B">Model</a>
+      <a href="https://huggingface.co/ngqtrung/Video-HopChain-8B-Standard-RL">Standard-RL checkpoint</a>
       <a href="https://huggingface.co/collections/ngqtrung/video-hopchain">Collection</a>
     </nav>
     <p class="lic">
