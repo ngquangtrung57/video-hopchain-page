@@ -165,9 +165,9 @@
         introduce <strong>Confidence-Gated Exploration (CGE)</strong>. With 8 rollouts per question, CGE samples the
         first 4 rollouts as usual. If these 4 rollouts are either all correct or all incorrect, it then
         samples the last 4 rollouts with the policy's most confident token masked inside the reasoning
-        span, and it removes the masked positions from the loss while all 8 rollouts enter the advantage.
-        With CGE, the mean rises further to 59.3. We release the dataset, the checkpoint, the data
-        generation code, and the training code.
+        span, and all 8 rollouts then enter the advantage. With CGE, the mean rises further to 59.3. We
+        release our model, Video-HopChain-8B, together with the dataset, the data generation code, and
+        the training code.
       </p>
     </div>
   </div>
@@ -250,8 +250,8 @@
         <p>Sample the first 4 rollouts and score them. If they disagree, the group already carries variance, and the last 4 are sampled as usual.</p></article>
       <article class="card step"><span class="n">2</span><h3>Top-token mask</h3>
         <p>If the first 4 are all correct or all incorrect, the last 4 drop the top token wherever its probability exceeds &tau; = 0.95 inside the reasoning span, and renormalize over the rest.</p></article>
-      <article class="card step"><span class="n">3</span><h3>Loss mask</h3>
-        <p>The masked positions leave the loss. All 8 rollouts enter the group advantage, so the group can train at the same compute budget.</p></article>
+      <article class="card step"><span class="n">3</span><h3>Loss</h3>
+        <p>Every position stays in the loss. A masked position keeps a small weight from its importance ratio when its rollout beats the group, and gets no gradient otherwise. All 8 rollouts enter the group advantage, so the group can train at the same compute budget.</p></article>
     </div>
   </div>
 </section>
@@ -321,21 +321,21 @@
           <tr class="grp"><th colspan="10" scope="rowgroup">base model</th></tr>
           <tr><th scope="row" class="l">Qwen3-VL-8B-Instruct<sup>&dagger;</sup></th><td class="l">&ndash;</td><td>64.0</td><td>28.1</td><td>63.5</td><td>40.7</td><td>32.0</td><td>42.7</td><td>72.6</td><td>74.7</td></tr>
           <tr class="grp"><th colspan="10" scope="rowgroup">open-source video reasoning models</th></tr>
-          <tr><th scope="row" class="l">Video-R1</th><td class="l">Qwen2.5-VL-7B</td><td>61.4</td><td>26.3</td><td>52.4</td><td>36.5</td><td>48.0<sup>&#9733;</sup></td><td>36.3<sup>&#9733;</sup></td><td>68.1</td><td>69.5<sup>&#9733;</sup></td></tr>
-          <tr><th scope="row" class="l">VideoChat-R1</th><td class="l">Qwen2.5-VL-7B</td><td>60.0</td><td><u>28.6</u></td><td>46.4</td><td>33.0</td><td><u>48.2</u><sup>&#9733;</sup></td><td>36.1<sup>&#9733;</sup></td><td>67.2</td><td>61.5<sup>&#9733;</sup></td></tr>
+          <tr><th scope="row" class="l">Video-R1</th><td class="l">Qwen2.5-VL-7B</td><td>61.4</td><td>26.3</td><td>52.4</td><td>36.5</td><td>48.0</td><td>36.3</td><td>68.1</td><td>69.5</td></tr>
+          <tr><th scope="row" class="l">VideoChat-R1</th><td class="l">Qwen2.5-VL-7B</td><td>60.0</td><td><u>28.6</u></td><td>46.4</td><td>33.0</td><td><u>48.2</u></td><td>36.1</td><td>67.2</td><td>61.5</td></tr>
           <tr><th scope="row" class="l">VideoRFT</th><td class="l">Qwen2.5-VL-7B</td><td>59.8</td><td>&ndash;</td><td>51.1</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
           <tr><th scope="row" class="l">Video-RTS</th><td class="l">Qwen2.5-VL-7B</td><td>63.0</td><td>&ndash;</td><td>52.7</td><td>40.7</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
           <tr><th scope="row" class="l">Video-KTR</th><td class="l">Qwen2.5-VL-7B</td><td>62.5</td><td>&ndash;</td><td>53.1</td><td>42.7</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
           <tr><th scope="row" class="l">Video-Thinker</th><td class="l">Qwen2.5-VL-7B</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>43.2</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td><u>80.7</u></td></tr>
           <tr><th scope="row" class="l">Video-o3</th><td class="l">Qwen2.5-VL-7B</td><td><u>66.5</u></td><td>&ndash;</td><td>51.7</td><td>46.5</td><td>&ndash;</td><td><u>44.7</u></td><td>&ndash;</td><td>&ndash;</td></tr>
-          <tr><th scope="row" class="l">Conan</th><td class="l">Qwen2.5-VL-7B</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>44.6</td><td><b>51.0</b><sup>&#9733;</sup></td><td>42.7</td><td>72.8</td><td><b>81.0</b></td></tr>
+          <tr><th scope="row" class="l">Conan</th><td class="l">Qwen2.5-VL-7B</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>44.6</td><td><b>51.0</b></td><td>42.7</td><td>72.8</td><td><b>81.0</b></td></tr>
           <tr><th scope="row" class="l">LongVILA-R1</th><td class="l">LongVILA-7B</td><td>65.1</td><td>&ndash;</td><td>51.0</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>72.0</td><td>&ndash;</td></tr>
           <tr><th scope="row" class="l">OneThinker</th><td class="l">Qwen3-VL-8B</td><td><u>66.5</u></td><td>&ndash;</td><td><u>66.2</u></td><td><b>48.7</b></td><td>&ndash;</td><td>&ndash;</td><td><b>79.2</b></td><td>&ndash;</td></tr>
           <tr class="ours"><th scope="row" class="l">Video-HopChain-8B (ours) <a class="ckpt" href="https://huggingface.co/ngqtrung/Video-HopChain-8B" title="Video-HopChain-8B on Hugging Face">ckpt</a></th><td class="l">Qwen3-VL-8B</td><td><b>69.2</b></td><td><b>37.4</b></td><td><b>67.5</b></td><td><u>48.6</u></td><td>44.9</td><td><b>46.6</b></td><td><u>78.9</u></td><td><b>81.0</b></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="tcap">A dash marks an unreported number. The best value of each column is bold and the second best is underlined. <sup>&#9733;</sup> A value taken from Conan. <sup>&dagger;</sup> A result that we reproduce under our own setting.</p>
+    <p class="tcap">A dash marks an unreported number. The best value of each column is bold and the second best is underlined. <sup>&dagger;</sup> A result that we reproduce under our own setting.</p>
 
     <h3 class="sub" id="ablation">Where the threshold matters</h3>
     <div class="split rev">
